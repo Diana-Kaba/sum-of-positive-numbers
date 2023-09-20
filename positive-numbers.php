@@ -4,16 +4,22 @@ $arr = [
     [-29, 56, -288, 2560, -34],
 ];
 
-$pos;
-
-for ($i = 0; $i < count($arr); $i++) {
-    for ($k = 0; $k < count($arr[$i]); $k++) {
-        if ($arr[$i][$k] > 0) {
-            $pos[] = $arr[$i][$k];
-        }
-    }
+function isPositive($number) {
+    return $number > 0;
 }
 
-$sum = array_sum($pos);
+$pos = array_filter($arr, function($subArray) {
+    return array_filter($subArray, 'isPositive');
+});
 
+$sum = array_sum(array_merge(...$pos));
 echo "Сума позитивних чисел - $sum";
+
+// for ($i = 0; $i < count($arr); $i++) {
+//     for ($k = 0; $k < count($arr[$i]); $k++) {
+//         if ($arr[$i][$k] > 0) {
+//             $pos[] = $arr[$i][$k];
+//         }
+//     }
+// }
+// $sum = array_sum($pos);
